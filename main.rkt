@@ -1,7 +1,9 @@
 #lang racket/base
 (require racket/contract)
-(provide/contract [until-timeout (((-> any/c)) ((or/c #f (and/c real? (not/c negative?)) (-> any)) (any/c . -> . any/c))  . ->* . any/c)]
-                  [thread-loop ((-> any) (any/c . -> . any) . -> . thread?)])
+(define timeout/c (or/c #f (and/c real? (not/c negative?)) (-> any)))
+(provide/contract [until-timeout (((-> any/c)) (timeout/c (any/c . -> . any/c))  . ->* . any/c)]
+                  [thread-loop ((-> any) (any/c . -> . any) . -> . thread?)]
+                  [timeout/c (any/c . -> . boolean?)])
 
 (module+ test
   (require rackunit))
