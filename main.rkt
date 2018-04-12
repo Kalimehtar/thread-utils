@@ -3,7 +3,7 @@
 (define timeout/c (or/c #f (and/c real? (not/c negative?)) (-> any)))
 (provide/contract [until-timeout (((-> any/c)) (timeout/c (any/c . -> . any/c))  . ->* . any/c)]
                   [thread-loop ((-> any) (any/c . -> . any) . -> . thread?)]
-                  [timeout/c (any/c . -> . boolean?)])
+                  [timeout/c contract?])
 
 (module+ test
   (require rackunit))
