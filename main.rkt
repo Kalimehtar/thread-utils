@@ -1,8 +1,8 @@
 #lang racket/base
 (require racket/contract)
 (define timeout/c (or/c #f (and/c real? (not/c negative?)) (-> any)))
-(provide/contract [until-timeout (((-> any/c)) (timeout/c (any/c . -> . any/c))  . ->* . any/c)]
-                  [thread-loop ((-> any) (any/c . -> . any) . -> . thread?)]
+(provide/contract [until-timeout (((-> any/c)) (timeout/c any/c)  . ->* . any/c)]
+                  [thread-loop (((-> any)) (any/c) . ->* . thread?)]
                   [timeout/c contract?])
 
 (module+ test
